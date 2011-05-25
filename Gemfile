@@ -28,10 +28,11 @@ gem 'mysql2', '0.2.7'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'rails3-generators'
   gem 'ZenTest'
   gem 'autotest-rails'
   gem 'autotest-growl'
   gem 'autotest-fsevent'
+  gem 'shoulda-context'
 end
