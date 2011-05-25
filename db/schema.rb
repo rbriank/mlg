@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20110525204959) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "address"
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.string   "email"
     t.boolean  "verified"
     t.datetime "created_at"

@@ -4,7 +4,7 @@ Factory.define :person do |f|
   f.first_name "MyString"
   f.last_name "MyString"
   f.address "MyString"
-  f.phone_number 1234567
+  f.phone_number "993-993-4567"
   f.email "me@mine.com"
   f.verified false
 end
