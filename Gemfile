@@ -30,4 +30,8 @@ gem 'mysql2', '0.2.7'
 group :development, :test do
   gem 'factory_girl'
   gem 'rails3-generators'
+  gem 'ZenTest'
+  gem 'autotest-rails'
+  gem 'autotest-growl'
+  gem 'autotest-fsevent'
 end
