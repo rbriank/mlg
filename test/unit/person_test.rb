@@ -9,6 +9,7 @@ class PersonTest < ActiveSupport::TestCase
     context "email validity" do
       should "flag invalid" do
         assert_invalid(@person, :email, 'this is not valid')
+        assert_invalid(@person, :email, nil)
       end
       should "allow valid" do
         assert_valid(@person, :email, 'me@me.com')
@@ -24,6 +25,9 @@ class PersonTest < ActiveSupport::TestCase
         assert_valid(@person, :phone_number, '(555) 555-1212')
         assert_valid(@person, :phone_number, '555-1212')
       end
+      should "not be required" do
+        assert_valid(@person, :phone_number, nil)
+      end
     end
 
     [:first_name, :last_name, :address].each do |field|
@@ -36,6 +40,18 @@ class PersonTest < ActiveSupport::TestCase
           assert_valid(@person, field, 'anything is better than nothing')
         end
       end
+    end
+  end
+
+  context "verification" do
+    setup do
+      @person = Factory(:person, :verified => false)
+    end
+
+    should "update person with verify" do
+      assert @person.verify
+      @person.reload
+      assert @person.verified
     end
   end
 end
