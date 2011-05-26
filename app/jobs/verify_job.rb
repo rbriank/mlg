@@ -1,10 +1,8 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-
 class VerifyJob
   @queue = :verify
 
-  def perform(person_id)
-    
+  def self.perform(person_id)
+    person = Person.find_by_id(person_id)
+    person.verify if person
   end
 end

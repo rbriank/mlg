@@ -79,8 +79,16 @@ class PersonTest < ActiveSupport::TestCase
     setup do
       @person = Factory(:person)
     end
+
     should "Queue a verify job" do
       assert_queued(VerifyJob, [@person.id])
+    end
+
+    should "run jobs" do
+      assert !@person.verified
+      Resque.run!
+      @person.reload
+      assert @person.verified
     end
   end
 end
