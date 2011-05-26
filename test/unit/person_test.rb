@@ -54,4 +54,24 @@ class PersonTest < ActiveSupport::TestCase
       assert @person.verified
     end
   end
+
+  context "scopes" do
+    setup do
+      @person1 = Factory(:person, :first_name => 'bob', :last_name => 'millet')
+      @person2 = Factory(:person, :first_name => 'sue', :last_name => 'bob')
+      @person3 = Factory(:person, :first_name => 'not like', :last_name => 'the others')
+    end
+
+    should "find people by first or last name" do
+      people_ids = Person.named('bob').map(&:id)
+      assert people_ids.include?(@person1.id)
+      assert people_ids.include?(@person2.id)
+      assert !people_ids.include?(@person3.id)
+    end
+
+    should "not find people who aren't there" do
+      people_ids = Person.named('not here').map(&:id)
+      assert people_ids.empty?
+    end
+  end
 end
