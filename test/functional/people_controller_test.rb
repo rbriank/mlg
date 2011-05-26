@@ -108,4 +108,23 @@ class PeopleControllerTest < ActionController::TestCase
       assert_tag "div", :attributes => {:id => "error_explanation"}
     end
   end
+
+  context "When searching" do
+    setup do
+      @person1 = Factory(:person, :first_name => 'bob', :last_name => 'millet')
+      @person2 = Factory(:person, :first_name => 'sue', :last_name => 'bob')
+      @person3 = Factory(:person, :first_name => 'not like', :last_name => 'the others')
+    end
+
+    should "get index" do
+      get :index, :named => 'bob'
+      assert_response :success
+      assert_not_nil assigns(:people)
+
+      assert_tag "td", :content => /bob/
+      assert_tag "td", :content => /millet/
+      assert_tag "td", :content => /sue/
+      assert_no_tag "td", :content => /not like/
+    end
+  end
 end

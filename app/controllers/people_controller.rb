@@ -3,8 +3,10 @@ class PeopleController < ApplicationController
   
   # GET /people
   def index
-    @people = Person.all
-    respond_with(@people)
+    @people = params[:named].blank? ? Person.all : Person.named(params[:named])
+    respond_with(@people) do |format|
+      format.js {}
+    end
   end
 
   # GET /people/1
@@ -50,6 +52,8 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @person.destroy
 
-    respond_with(@person)
+    respond_with(@person)do |format|
+      format.js {}
+    end
   end
 end
