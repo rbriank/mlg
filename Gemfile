@@ -7,6 +7,7 @@ gem 'rake', '0.8.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '0.2.7'
+gem 'resque'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -24,17 +25,22 @@ gem 'mysql2', '0.2.7'
 # gem 'aws-s3', :require => 'aws/s3'
 
 # Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
+# put test-only gems in this group so their generatorss
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'factory_girl_rails'
   gem 'rails3-generators'
   gem "jquery-rails"
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
+group :test do
+  gem 'resque_unit'
+  gem "capybara"
+  gem "launchy"
+  gem 'factory_girl_rails'
   gem 'ZenTest'
   gem 'autotest-rails'
   gem 'autotest-growl'
   gem 'autotest-fsevent'
   gem 'shoulda-context'
-  gem 'ruby-debug19', :require => 'ruby-debug'
-  gem 'resque_unit'
 end
