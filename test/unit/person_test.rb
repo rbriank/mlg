@@ -74,4 +74,13 @@ class PersonTest < ActiveSupport::TestCase
       assert people_ids.empty?
     end
   end
+
+  context "Queuing jobs" do
+    setup do
+      @person = Factory(:person)
+    end
+    should "Queue a verify job" do
+      assert_queued(VerifyJob, [@person.id])
+    end
+  end
 end

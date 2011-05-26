@@ -36,4 +36,5 @@ group :development, :test do
   gem 'autotest-fsevent'
   gem 'shoulda-context'
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'resque_unit'
 end

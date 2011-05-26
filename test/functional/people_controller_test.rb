@@ -127,4 +127,5 @@ class PeopleControllerTest < ActionController::TestCase
       assert_no_tag "td", :content => /not like/
     end
   end
+  
 end
