@@ -77,6 +77,7 @@ class PersonTest < ActiveSupport::TestCase
 
   context "Queuing jobs" do
     setup do
+      Resque.reset!
       @person = Factory(:person)
     end
 
